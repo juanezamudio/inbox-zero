@@ -1,5 +1,4 @@
 {
-  "buildCommand": "cd ../.. && turbo run build --filter={apps/web}...",
-  "installCommand": "cd ../.. && corepack enable && /bin/sh/clone-marketing.sh && pnpm install --no-frozen-lockfile",
+  "buildCommand": "cd ../.. && ./clone-marketing.sh && turbo run build --filter={apps/web}...",
   "ignoreCommand": ""
 }
