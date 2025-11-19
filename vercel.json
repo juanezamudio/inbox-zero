@@ -1,4 +1,4 @@
 {
-  "buildCommand": "cd ../.. && ./clone-marketing.sh && turbo run build --filter={apps/web}...",
+  "buildCommand": "cd ../.. && ./clone-marketing.sh && pnpm turbo run build --filter={apps/web}...",
   "ignoreCommand": ""
 }
