@@ -1,6 +1,6 @@
 {
   "ignoreCommand": "",
   "installCommand": "cd ../.. && pnpm install",
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=apps/web",
-  "devCommand": "cd ../.. && pnpm turbo run dev --filter=apps/web"
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=./apps/web",
+  "devCommand": "cd ../.. && pnpm turbo run dev --filter=./apps/web"
 }
