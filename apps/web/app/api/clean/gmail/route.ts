@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { verifySignatureAppRouter } from "@upstash/qstash/nextjs";
 import { z } from "zod";
 import { withError, type RequestWithLogger } from "@/utils/middleware";
 import { getGmailClientWithRefresh } from "@/utils/gmail/client";
@@ -10,7 +9,7 @@ import { isDefined } from "@/utils/types";
 import type { Logger } from "@/utils/logger";
 import { CleanAction } from "@prisma/client";
 import { updateThread } from "@/utils/redis/clean";
-import { env } from "@/env";
+import { withQStashVerification } from "@/utils/qstash";
 
 const cleanGmailSchema = z.object({
   emailAccountId: z.string(),
@@ -137,22 +136,17 @@ async function saveToDatabase({
   });
 }
 
-const handler = async (request: Request) => {
-  const json = await request.json();
-  const body = cleanGmailSchema.parse(json);
-
-  await performGmailAction({
-    ...body,
-    logger: (request as RequestWithLogger).logger,
-  });
-
-  return NextResponse.json({ success: true });
-};
-
-// Only use QStash verification if credentials are configured
-const useQStash = env.QSTASH_CURRENT_SIGNING_KEY && env.QSTASH_NEXT_SIGNING_KEY;
-
 export const POST = withError(
   "clean/gmail",
-  useQStash ? verifySignatureAppRouter(handler) : handler,
+  withQStashVerification(async (request: Request) => {
+    const json = await request.json();
+    const body = cleanGmailSchema.parse(json);
+
+    await performGmailAction({
+      ...body,
+      logger: (request as RequestWithLogger).logger,
+    });
+
+    return NextResponse.json({ success: true });
+  }),
 );

@@ -17,10 +17,10 @@ import { DigestStatus } from "@prisma/client";
 import { extractNameFromEmail } from "../../../../utils/email";
 import { getRuleName } from "@/utils/rule/consts";
 import { SystemType } from "@prisma/client";
-import { verifySignatureAppRouter } from "@upstash/qstash/nextjs";
 import { camelCase } from "lodash";
 import { createEmailProvider } from "@/utils/email/provider";
 import { sleep } from "@/utils/sleep";
+import { withQStashVerification } from "@/utils/qstash";
 
 export const maxDuration = 60;
 
@@ -45,7 +45,7 @@ export const GET = withEmailAccount("resend/digest", async (request) => {
 });
 
 export const POST = withError(
-  verifySignatureAppRouter(async (request: NextRequest) => {
+  withQStashVerification(async (request: NextRequest) => {
     const json = await request.json();
     const { success, data, error } = sendDigestEmailBody.safeParse(json);
 

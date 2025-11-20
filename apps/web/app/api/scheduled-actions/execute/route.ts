@@ -1,4 +1,3 @@
-import { verifySignatureAppRouter } from "@upstash/qstash/nextjs";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { withError } from "@/utils/middleware";
@@ -8,6 +7,7 @@ import { executeScheduledAction } from "@/utils/scheduled-actions/executor";
 import prisma from "@/utils/prisma";
 import { ScheduledActionStatus } from "@prisma/client";
 import { createEmailProvider } from "@/utils/email/provider";
+import { withQStashVerification } from "@/utils/qstash";
 
 const logger = createScopedLogger("scheduled-actions-executor");
 
@@ -17,7 +17,7 @@ const scheduledActionBody = z.object({
   scheduledActionId: z.string().min(1, "Scheduled action ID is required"),
 });
 
-export const POST = verifySignatureAppRouter(
+export const POST = withQStashVerification(
   withError(async (request: NextRequest) => {
     try {
       logger.info("QStash request received", {
