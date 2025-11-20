@@ -312,9 +312,13 @@ if (!env.AUTH_SECRET && !env.NEXTAUTH_SECRET) {
   );
 }
 
-if (env.MICROSOFT_CLIENT_ID && !env.MICROSOFT_WEBHOOK_CLIENT_STATE) {
+if (
+  env.MICROSOFT_CLIENT_ID &&
+  env.MICROSOFT_CLIENT_ID !== "a" &&
+  !env.MICROSOFT_WEBHOOK_CLIENT_STATE
+) {
   throw new Error(
-    "MICROSOFT_WEBHOOK_CLIENT_STATE environment variable must be defined",
+    "MICROSOFT_WEBHOOK_CLIENT_STATE environment variable must be defined when MICROSOFT_CLIENT_ID is configured",
   );
 }
 
