@@ -1,3 +1,4 @@
 {
-  "ignoreCommand": ""
+  "ignoreCommand": "",
+  "outputDirectory": "apps/web/.next"
 }
