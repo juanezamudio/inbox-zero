@@ -10,7 +10,7 @@ import { createEmailProvider } from "@/utils/email/provider";
 const logger = createScopedLogger("api/google/watch/all");
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 async function watchAllEmails() {
   const emailAccounts = await prisma.emailAccount.findMany({

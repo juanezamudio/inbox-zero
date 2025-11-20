@@ -29,7 +29,7 @@ import { prefixPath } from "@/utils/path";
 import { checkUserOwnsEmailAccount } from "@/utils/email-account";
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 export default async function CategoriesPage({
   params,

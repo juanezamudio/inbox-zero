@@ -5,7 +5,7 @@ import { processHistoryForUser } from "@/app/api/google/webhook/process-history"
 import { createScopedLogger, type Logger } from "@/utils/logger";
 import { handleWebhookError } from "@/utils/webhook/error-handler";
 
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 // Google PubSub calls this endpoint each time a user recieves an email. We subscribe for updates via `api/google/watch`
 export const POST = withError(async (request) => {

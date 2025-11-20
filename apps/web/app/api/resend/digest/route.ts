@@ -22,7 +22,7 @@ import { createEmailProvider } from "@/utils/email/provider";
 import { sleep } from "@/utils/sleep";
 import { withQStashVerification } from "@/utils/qstash";
 
-export const maxDuration = 60;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 type SendEmailResult = {
   success: boolean;

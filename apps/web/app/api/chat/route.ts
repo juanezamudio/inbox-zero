@@ -11,7 +11,7 @@ import { convertToUIMessages } from "@/components/assistant-chat/helpers";
 import { captureException } from "@/utils/error";
 import { messageContextSchema } from "@/app/api/chat/validation";
 
-export const maxDuration = 120;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 const textPartSchema = z.object({
   text: z.string().min(1).max(3000),

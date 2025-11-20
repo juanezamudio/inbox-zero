@@ -19,7 +19,7 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { PageHeader } from "@/components/PageHeader";
 import { DismissibleVideoCard } from "@/components/VideoCard";
 
-export const maxDuration = 300; // Applies to the actions
+export const maxDuration = 10; // Reduced for Vercel Hobby plan // Applies to the actions
 
 const tabOptions = (emailAccountId: string) => [
   {

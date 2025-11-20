@@ -3,7 +3,7 @@ import { withAuth } from "@/utils/middleware";
 import { NextResponse } from "next/server";
 import { getEmailAccount } from "@/utils/redis/account-validation";
 
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 // 5 minutes in milliseconds
 const INACTIVITY_TIMEOUT = 5 * 60 * 1000;

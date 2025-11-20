@@ -24,7 +24,7 @@ import type { ParsedMessage } from "@/utils/types";
 
 const logger = createScopedLogger("ai/assistant/chat");
 
-export const maxDuration = 120;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 // tools
 const getUserRulesAndSettingsTool = ({

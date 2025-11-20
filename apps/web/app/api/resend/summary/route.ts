@@ -13,7 +13,7 @@ import { getMessagesBatch } from "@/utils/gmail/message";
 import { decodeSnippet } from "@/utils/gmail/decode";
 import { createUnsubscribeToken } from "@/utils/unsubscribe";
 
-export const maxDuration = 60;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 const sendSummaryEmailBody = z.object({ emailAccountId: z.string() });
 

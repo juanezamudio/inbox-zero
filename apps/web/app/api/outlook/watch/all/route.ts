@@ -10,7 +10,7 @@ import { createManagedOutlookSubscription } from "@/utils/outlook/subscription-m
 const logger = createScopedLogger("api/outlook/watch/all");
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 async function watchAllEmails() {
   const emailAccounts = await prisma.emailAccount.findMany({

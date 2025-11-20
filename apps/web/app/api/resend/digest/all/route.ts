@@ -11,7 +11,7 @@ import { publishToQstashQueue } from "@/utils/upstash";
 const logger = createScopedLogger("cron/resend/digest/all");
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 async function sendDigestAllUpdate() {
   logger.info("Sending digest all update");

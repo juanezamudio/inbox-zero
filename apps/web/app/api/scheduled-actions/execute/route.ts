@@ -11,7 +11,7 @@ import { withQStashVerification } from "@/utils/qstash";
 
 const logger = createScopedLogger("scheduled-actions-executor");
 
-export const maxDuration = 300; // 5 minutes
+export const maxDuration = 10; // Reduced for Vercel Hobby plan // 5 minutes
 
 const scheduledActionBody = z.object({
   scheduledActionId: z.string().min(1, "Scheduled action ID is required"),

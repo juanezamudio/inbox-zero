@@ -18,7 +18,7 @@ export type LabelsResponse = {
 };
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 30;
+export const maxDuration = 10; // Reduced for Vercel Hobby plan
 
 export const GET = withEmailProvider("labels", async (request) => {
   const { emailProvider } = request;
