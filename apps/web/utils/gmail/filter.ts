@@ -9,22 +9,21 @@ export async function createFilter(options: {
   addLabelIds?: string[];
   removeLabelIds?: string[];
 }) {
-  const { gmail, from, addLabelIds, removeLabelIds } = options;
+  const { gmail, from, addLabelIds, removeLabelIds} = options;
 
   try {
-    return await withGmailRetry(() =>
-      gmail.users.settings.filters.create({
-        userId: "me",
-        requestBody: {
-          criteria: { from },
-          action: {
-            addLabelIds,
-            removeLabelIds,
-          },
+    return await gmail.users.settings.filters.create({
+      userId: "me",
+      requestBody: {
+        criteria: { from },
+        action: {
+          addLabelIds,
+          removeLabelIds,
         },
-      }),
-    );
+      },
+    });
   } catch (error) {
+    // "Filter already exists" is not a retryable error, so handle it directly
     if (isFilterExistsError(error)) return { status: 200 };
     throw error;
   }
